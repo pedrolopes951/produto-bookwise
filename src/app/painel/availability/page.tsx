@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocalStorage } from "@/lib/use-local-storage";
 
 interface DaySchedule {
   day: string;
@@ -9,7 +10,7 @@ interface DaySchedule {
   end: string;
 }
 
-const initialSchedule: DaySchedule[] = [
+const seedSchedule: DaySchedule[] = [
   { day: "Segunda", active: true, start: "09:00", end: "17:00" },
   { day: "Terça", active: true, start: "09:00", end: "17:00" },
   { day: "Quarta", active: true, start: "09:00", end: "17:00" },
@@ -27,7 +28,13 @@ for (let h = 6; h <= 22; h++) {
 }
 
 export default function AvailabilityPage() {
-  const [schedule, setSchedule] = useState<DaySchedule[]>(initialSchedule);
+  const [schedule, setSchedule] = useLocalStorage<DaySchedule[]>("bookwise-availability", seedSchedule);
+  const [saved, setSaved] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   function toggleDay(index: number) {
     setSchedule((prev) =>
@@ -38,6 +45,21 @@ export default function AvailabilityPage() {
   function updateTime(index: number, field: "start" | "end", value: string) {
     setSchedule((prev) =>
       prev.map((d, i) => (i === index ? { ...d, [field]: value } : d))
+    );
+  }
+
+  function handleSave() {
+    localStorage.setItem("bookwise-availability", JSON.stringify(schedule));
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  }
+
+  if (!mounted) {
+    return (
+      <div className="space-y-6">
+        <h1 className="text-2xl font-bold text-gray-900">Disponibilidade</h1>
+        <div className="rounded-xl bg-white p-12 shadow-sm text-center text-gray-400">A carregar...</div>
+      </div>
     );
   }
 
@@ -52,12 +74,10 @@ export default function AvailabilityPage() {
               key={day.day}
               className="flex flex-col gap-3 sm:flex-row sm:items-center rounded-lg border border-gray-100 p-4"
             >
-              {/* Nome do dia */}
               <span className="w-28 text-sm font-medium text-gray-900">
                 {day.day}
               </span>
 
-              {/* Toggle */}
               <button
                 onClick={() => toggleDay(index)}
                 className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
@@ -71,7 +91,6 @@ export default function AvailabilityPage() {
                 />
               </button>
 
-              {/* Seletores de hora */}
               {day.active ? (
                 <div className="flex items-center gap-2 sm:ml-4">
                   <select
@@ -107,8 +126,14 @@ export default function AvailabilityPage() {
           ))}
         </div>
 
-        <div className="mt-6 flex justify-end">
-          <button className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 transition-colors">
+        <div className="mt-6 flex items-center justify-end gap-3">
+          {saved && (
+            <span className="text-sm font-medium text-green-600">Alterações guardadas com sucesso!</span>
+          )}
+          <button
+            onClick={handleSave}
+            className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 transition-colors"
+          >
             Guardar Alterações
           </button>
         </div>

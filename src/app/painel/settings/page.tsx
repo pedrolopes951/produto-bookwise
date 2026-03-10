@@ -1,14 +1,61 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Save, Globe, Bell, Palette } from "lucide-react";
+import { useLocalStorage } from "@/lib/use-local-storage";
+
+interface Settings {
+  businessName: string;
+  slug: string;
+  description: string;
+  phone: string;
+  email: string;
+  address: string;
+  notifyNewBooking: boolean;
+  notifyCancellation: boolean;
+  notifyDailyReminder: boolean;
+  primaryColor: string;
+}
+
+const defaultSettings: Settings = {
+  businessName: "Salão da Maria",
+  slug: "salao-da-maria",
+  description: "Salão de beleza no coração de Lisboa. Especializados em cortes modernos, coloração e tratamentos capilares.",
+  phone: "+351 912 345 678",
+  email: "maria@salaodamaria.pt",
+  address: "Rua Augusta 45, 1100-053 Lisboa",
+  notifyNewBooking: true,
+  notifyCancellation: true,
+  notifyDailyReminder: false,
+  primaryColor: "#2563eb",
+};
 
 export default function SettingsPage() {
+  const [settings, setSettings] = useLocalStorage<Settings>("bookwise-settings", defaultSettings);
   const [saved, setSaved] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  function updateField<K extends keyof Settings>(field: K, value: Settings[K]) {
+    setSettings((prev) => ({ ...prev, [field]: value }));
+  }
 
   function handleSave() {
+    localStorage.setItem("bookwise-settings", JSON.stringify(settings));
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
+  }
+
+  if (!mounted) {
+    return (
+      <div className="space-y-8">
+        <h1 className="text-2xl font-bold text-gray-900">Definições</h1>
+        <div className="rounded-xl bg-white p-12 shadow-sm text-center text-gray-400">A carregar...</div>
+      </div>
+    );
   }
 
   return (
@@ -24,7 +71,6 @@ export default function SettingsPage() {
         </button>
       </div>
 
-      {/* Business Info */}
       <div className="rounded-xl bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-2">
           <Globe className="h-5 w-5 text-blue-600" />
@@ -35,7 +81,8 @@ export default function SettingsPage() {
             <label className="mb-1 block text-sm font-medium text-gray-700">Nome do Negócio</label>
             <input
               type="text"
-              defaultValue="Salão da Maria"
+              value={settings.businessName}
+              onChange={(e) => updateField("businessName", e.target.value)}
               className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
@@ -45,7 +92,8 @@ export default function SettingsPage() {
               <span className="text-sm text-gray-400">bookwise.app/b/</span>
               <input
                 type="text"
-                defaultValue="salao-da-maria"
+                value={settings.slug}
+                onChange={(e) => updateField("slug", e.target.value)}
                 className="flex-1 rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
               />
             </div>
@@ -54,7 +102,8 @@ export default function SettingsPage() {
             <label className="mb-1 block text-sm font-medium text-gray-700">Descrição</label>
             <textarea
               rows={3}
-              defaultValue="Salão de beleza no coração de Lisboa. Especializados em cortes modernos, coloração e tratamentos capilares."
+              value={settings.description}
+              onChange={(e) => updateField("description", e.target.value)}
               className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
@@ -62,7 +111,8 @@ export default function SettingsPage() {
             <label className="mb-1 block text-sm font-medium text-gray-700">Telefone</label>
             <input
               type="tel"
-              defaultValue="+351 912 345 678"
+              value={settings.phone}
+              onChange={(e) => updateField("phone", e.target.value)}
               className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
@@ -70,7 +120,8 @@ export default function SettingsPage() {
             <label className="mb-1 block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
-              defaultValue="maria@salaodamaria.pt"
+              value={settings.email}
+              onChange={(e) => updateField("email", e.target.value)}
               className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
@@ -78,14 +129,14 @@ export default function SettingsPage() {
             <label className="mb-1 block text-sm font-medium text-gray-700">Morada</label>
             <input
               type="text"
-              defaultValue="Rua Augusta 45, 1100-053 Lisboa"
+              value={settings.address}
+              onChange={(e) => updateField("address", e.target.value)}
               className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
         </div>
       </div>
 
-      {/* Notifications */}
       <div className="rounded-xl bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-2">
           <Bell className="h-5 w-5 text-blue-600" />
@@ -97,21 +148,36 @@ export default function SettingsPage() {
               <p className="text-sm font-medium text-gray-900">Email para novas marcações</p>
               <p className="text-xs text-gray-500">Receber email quando um cliente faz uma marcação</p>
             </div>
-            <input type="checkbox" defaultChecked className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+            <input
+              type="checkbox"
+              checked={settings.notifyNewBooking}
+              onChange={(e) => updateField("notifyNewBooking", e.target.checked)}
+              className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
           </label>
           <label className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-900">Email para cancelamentos</p>
               <p className="text-xs text-gray-500">Receber email quando uma marcação é cancelada</p>
             </div>
-            <input type="checkbox" defaultChecked className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+            <input
+              type="checkbox"
+              checked={settings.notifyCancellation}
+              onChange={(e) => updateField("notifyCancellation", e.target.checked)}
+              className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
           </label>
           <label className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-900">Lembrete diário</p>
               <p className="text-xs text-gray-500">Resumo das marcações do dia seguinte às 20:00</p>
             </div>
-            <input type="checkbox" className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+            <input
+              type="checkbox"
+              checked={settings.notifyDailyReminder}
+              onChange={(e) => updateField("notifyDailyReminder", e.target.checked)}
+              className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
           </label>
           <label className="flex items-center justify-between">
             <div>
@@ -123,7 +189,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Appearance */}
       <div className="rounded-xl bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-2">
           <Palette className="h-5 w-5 text-blue-600" />
@@ -134,8 +199,13 @@ export default function SettingsPage() {
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">Cor principal</label>
             <div className="flex items-center gap-2">
-              <input type="color" defaultValue="#2563eb" className="h-10 w-10 cursor-pointer rounded border border-gray-300" />
-              <span className="text-sm text-gray-500">#2563eb</span>
+              <input
+                type="color"
+                value={settings.primaryColor}
+                onChange={(e) => updateField("primaryColor", e.target.value)}
+                className="h-10 w-10 cursor-pointer rounded border border-gray-300"
+              />
+              <span className="text-sm text-gray-500">{settings.primaryColor}</span>
             </div>
           </div>
           <div>
