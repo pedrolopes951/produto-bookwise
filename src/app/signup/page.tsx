@@ -25,10 +25,10 @@ export default function SignUpPage() {
             Bookwise
           </Link>
           <h1 className="mt-6 text-center text-xl font-semibold text-gray-900">
-            Create your account
+            Criar conta
           </h1>
           <p className="mt-1 text-center text-sm text-gray-600">
-            Start scheduling in minutes
+            Comece a receber marcações em minutos
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-5">
@@ -37,7 +37,7 @@ export default function SignUpPage() {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
               >
-                Full Name
+                Nome
               </label>
               <div className="relative mt-1">
                 <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
@@ -47,7 +47,7 @@ export default function SignUpPage() {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Jane Smith"
+                  placeholder="Joana Silva"
                   className="block w-full rounded-lg border border-gray-300 py-2.5 pl-10 pr-3 text-sm text-gray-900 placeholder-gray-400 transition-colors focus:border-[#2563eb] focus:outline-none focus:ring-1 focus:ring-[#2563eb]"
                 />
               </div>
@@ -68,7 +68,7 @@ export default function SignUpPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="jane@example.com"
+                  placeholder="joana@exemplo.com"
                   className="block w-full rounded-lg border border-gray-300 py-2.5 pl-10 pr-3 text-sm text-gray-900 placeholder-gray-400 transition-colors focus:border-[#2563eb] focus:outline-none focus:ring-1 focus:ring-[#2563eb]"
                 />
               </div>
@@ -79,7 +79,7 @@ export default function SignUpPage() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                Password
+                Palavra-passe
               </label>
               <div className="relative mt-1">
                 <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
@@ -89,7 +89,7 @@ export default function SignUpPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="At least 8 characters"
+                  placeholder="Mínimo 8 caracteres"
                   className="block w-full rounded-lg border border-gray-300 py-2.5 pl-10 pr-3 text-sm text-gray-900 placeholder-gray-400 transition-colors focus:border-[#2563eb] focus:outline-none focus:ring-1 focus:ring-[#2563eb]"
                 />
               </div>
@@ -99,17 +99,17 @@ export default function SignUpPage() {
               type="submit"
               className="w-full rounded-lg bg-[#2563eb] py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1d4ed8]"
             >
-              Create Account
+              Criar Conta
             </button>
           </form>
 
           <p className="mt-6 text-center text-sm text-gray-600">
-            Already have an account?{" "}
+            Já tem conta?{" "}
             <Link
               href="/signin"
               className="font-medium text-[#2563eb] hover:text-[#1d4ed8]"
             >
-              Sign in
+              Entrar
             </Link>
           </p>
         </div>

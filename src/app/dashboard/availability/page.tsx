@@ -10,13 +10,13 @@ interface DaySchedule {
 }
 
 const initialSchedule: DaySchedule[] = [
-  { day: "Monday", active: true, start: "09:00", end: "17:00" },
-  { day: "Tuesday", active: true, start: "09:00", end: "17:00" },
-  { day: "Wednesday", active: true, start: "09:00", end: "17:00" },
-  { day: "Thursday", active: true, start: "09:00", end: "17:00" },
-  { day: "Friday", active: true, start: "09:00", end: "17:00" },
-  { day: "Saturday", active: true, start: "10:00", end: "14:00" },
-  { day: "Sunday", active: false, start: "09:00", end: "17:00" },
+  { day: "Segunda", active: true, start: "09:00", end: "17:00" },
+  { day: "Terça", active: true, start: "09:00", end: "17:00" },
+  { day: "Quarta", active: true, start: "09:00", end: "17:00" },
+  { day: "Quinta", active: true, start: "09:00", end: "17:00" },
+  { day: "Sexta", active: true, start: "09:00", end: "17:00" },
+  { day: "Sábado", active: true, start: "10:00", end: "14:00" },
+  { day: "Domingo", active: false, start: "09:00", end: "17:00" },
 ];
 
 const timeOptions: string[] = [];
@@ -43,7 +43,7 @@ export default function AvailabilityPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Availability</h1>
+      <h1 className="text-2xl font-bold text-gray-900">Disponibilidade</h1>
 
       <div className="rounded-xl bg-white p-6 shadow-sm">
         <div className="space-y-4">
@@ -52,7 +52,7 @@ export default function AvailabilityPage() {
               key={day.day}
               className="flex flex-col gap-3 sm:flex-row sm:items-center rounded-lg border border-gray-100 p-4"
             >
-              {/* Day name */}
+              {/* Nome do dia */}
               <span className="w-28 text-sm font-medium text-gray-900">
                 {day.day}
               </span>
@@ -71,7 +71,7 @@ export default function AvailabilityPage() {
                 />
               </button>
 
-              {/* Time selectors */}
+              {/* Seletores de hora */}
               {day.active ? (
                 <div className="flex items-center gap-2 sm:ml-4">
                   <select
@@ -85,7 +85,7 @@ export default function AvailabilityPage() {
                       </option>
                     ))}
                   </select>
-                  <span className="text-gray-400">to</span>
+                  <span className="text-gray-400">até</span>
                   <select
                     value={day.end}
                     onChange={(e) => updateTime(index, "end", e.target.value)}
@@ -100,7 +100,7 @@ export default function AvailabilityPage() {
                 </div>
               ) : (
                 <span className="text-sm text-gray-400 sm:ml-4">
-                  Unavailable
+                  Indisponível
                 </span>
               )}
             </div>
@@ -109,7 +109,7 @@ export default function AvailabilityPage() {
 
         <div className="mt-6 flex justify-end">
           <button className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 transition-colors">
-            Save Changes
+            Guardar Alterações
           </button>
         </div>
       </div>

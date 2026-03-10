@@ -1,24 +1,24 @@
 import { BookingFlow } from "./booking-flow";
 
 const business = {
-  name: "Jane's Hair Studio",
-  description: "Professional hair styling and coloring services in downtown.",
+  name: "Estúdio da Joana",
+  description: "Serviços profissionais de cabeleireiro e coloração no centro da cidade.",
   services: [
-    { id: "1", name: "Haircut", duration: 30, price: 35, currency: "USD" },
+    { id: "1", name: "Corte de Cabelo", duration: 30, price: 35, currency: "EUR" },
     {
       id: "2",
-      name: "Hair Coloring",
+      name: "Coloração",
       duration: 90,
       price: 120,
-      currency: "USD",
+      currency: "EUR",
     },
-    { id: "3", name: "Beard Trim", duration: 15, price: 15, currency: "USD" },
+    { id: "3", name: "Barba", duration: 15, price: 15, currency: "EUR" },
     {
       id: "4",
-      name: "Full Styling",
+      name: "Styling Completo",
       duration: 60,
       price: 80,
-      currency: "USD",
+      currency: "EUR",
     },
   ],
 };

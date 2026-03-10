@@ -16,11 +16,11 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Bookings", href: "/dashboard/bookings", icon: Calendar },
-  { label: "Services", href: "/dashboard/services", icon: Briefcase },
-  { label: "Availability", href: "/dashboard/availability", icon: Clock },
-  { label: "Settings", href: "/dashboard/settings", icon: Settings },
+  { label: "Painel", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Marcações", href: "/dashboard/bookings", icon: Calendar },
+  { label: "Serviços", href: "/dashboard/services", icon: Briefcase },
+  { label: "Disponibilidade", href: "/dashboard/availability", icon: Clock },
+  { label: "Definições", href: "/dashboard/settings", icon: Settings },
 ];
 
 const BOOKING_LINK = "bookwise.app/book/your-business";
@@ -71,14 +71,14 @@ export default function DashboardLayout({
 
       <div className="border-t border-gray-200 px-4 py-4">
         <p className="mb-2 text-xs font-medium text-gray-500 uppercase tracking-wide">
-          Your booking link
+          O seu link de marcações
         </p>
         <div className="flex items-center gap-2 rounded-lg bg-gray-50 px-3 py-2">
           <span className="truncate text-xs text-gray-600">{BOOKING_LINK}</span>
           <button
             onClick={handleCopy}
             className="ml-auto shrink-0 text-gray-400 hover:text-gray-600 transition-colors"
-            title="Copy link"
+            title="Copiar link"
           >
             {copied ? (
               <Check className="h-4 w-4 text-green-500" />

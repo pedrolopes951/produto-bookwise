@@ -90,7 +90,7 @@ model Service {
   description String?
   duration   Int
   price      Decimal  @db.Decimal(10, 2)
-  currency   String   @default("USD")
+  currency   String   @default("EUR")
   color      String?
   isActive   Boolean  @default(true)
   businessId String

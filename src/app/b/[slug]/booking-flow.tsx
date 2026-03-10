@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameMonth, isSameDay, isBefore, startOfDay, addMonths, subMonths } from "date-fns";
+import { pt } from "date-fns/locale";
 import {
   Clock,
   ChevronLeft,
@@ -27,14 +28,15 @@ type BookingFlowProps = {
   businessName: string;
 };
 
-const STEPS = ["Service", "Date & Time", "Details"] as const;
+const STEPS = ["Serviço", "Data e Hora", "Os seus dados"] as const;
 
 function generateTimeSlots(): string[] {
   const slots: string[] = [];
   for (let hour = 9; hour < 17; hour++) {
     for (let min = 0; min < 60; min += 30) {
-      const date = new Date(2000, 0, 1, hour, min);
-      slots.push(format(date, "h:mm a"));
+      const h = hour.toString().padStart(2, "0");
+      const m = min.toString().padStart(2, "0");
+      slots.push(`${h}:${m}`);
     }
   }
   return slots;
@@ -43,7 +45,7 @@ function generateTimeSlots(): string[] {
 const TIME_SLOTS = generateTimeSlots();
 
 function formatPrice(price: number, currency: string): string {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("pt-PT", {
     style: "currency",
     currency,
     minimumFractionDigits: 0,
@@ -114,7 +116,7 @@ function ServiceStep({
   return (
     <div>
       <h2 className="mb-4 text-lg font-semibold text-gray-900">
-        Select a service
+        Escolha um serviço
       </h2>
       <div className="grid gap-3 sm:grid-cols-2">
         {services.map((service) => {
@@ -188,7 +190,7 @@ function CalendarGrid({
           <ChevronLeft className="h-5 w-5 text-gray-600" />
         </button>
         <span className="text-sm font-semibold text-gray-900">
-          {format(viewMonth, "MMMM yyyy")}
+          {format(viewMonth, "MMMM yyyy", { locale: pt })}
         </span>
         <button
           onClick={() => setViewMonth(addMonths(viewMonth, 1))}
@@ -200,7 +202,7 @@ function CalendarGrid({
 
       {/* Day-of-week headers */}
       <div className="mb-1 grid grid-cols-7 text-center text-xs font-medium text-gray-500">
-        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
+        {["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"].map((d) => (
           <div key={d} className="py-1">
             {d}
           </div>
@@ -254,7 +256,7 @@ function DateTimeStep({
   return (
     <div>
       <h2 className="mb-4 text-lg font-semibold text-gray-900">
-        Pick a date & time
+        Escolha data e hora
       </h2>
 
       <div className="mb-6 rounded-lg border border-gray-200 p-4">
@@ -265,7 +267,7 @@ function DateTimeStep({
         <div>
           <div className="mb-3 flex items-center gap-2 text-sm font-medium text-gray-700">
             <Calendar className="h-4 w-4" />
-            <span>{format(selectedDate, "EEEE, MMMM d, yyyy")}</span>
+            <span>{format(selectedDate, "EEEE, d 'de' MMMM 'de' yyyy", { locale: pt })}</span>
           </div>
           <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
             {TIME_SLOTS.map((slot) => {
@@ -310,21 +312,21 @@ function DetailsStep({
   return (
     <div>
       <h2 className="mb-4 text-lg font-semibold text-gray-900">
-        Your details
+        Os seus dados
       </h2>
       <div className="space-y-4">
-        {/* Name */}
+        {/* Nome */}
         <div>
           <label className="mb-1 flex items-center gap-1.5 text-sm font-medium text-gray-700">
             <User className="h-4 w-4" />
-            Name <span className="text-red-500">*</span>
+            Nome <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             required
             value={form.name}
             onChange={(e) => onChange({ ...form, name: e.target.value })}
-            placeholder="Your full name"
+            placeholder="O seu nome completo"
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           />
         </div>
@@ -340,36 +342,36 @@ function DetailsStep({
             required
             value={form.email}
             onChange={(e) => onChange({ ...form, email: e.target.value })}
-            placeholder="you@example.com"
+            placeholder="voce@exemplo.com"
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           />
         </div>
 
-        {/* Phone */}
+        {/* Telemóvel */}
         <div>
           <label className="mb-1 flex items-center gap-1.5 text-sm font-medium text-gray-700">
             <Phone className="h-4 w-4" />
-            Phone
+            Telemóvel
           </label>
           <input
             type="tel"
             value={form.phone}
             onChange={(e) => onChange({ ...form, phone: e.target.value })}
-            placeholder="(optional)"
+            placeholder="(opcional)"
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           />
         </div>
 
-        {/* Notes */}
+        {/* Notas */}
         <div>
           <label className="mb-1 flex items-center gap-1.5 text-sm font-medium text-gray-700">
             <FileText className="h-4 w-4" />
-            Notes
+            Notas
           </label>
           <textarea
             value={form.notes}
             onChange={(e) => onChange({ ...form, notes: e.target.value })}
-            placeholder="Anything we should know? (optional)"
+            placeholder="Algo que devamos saber? (opcional)"
             rows={3}
             className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           />
@@ -397,9 +399,9 @@ function SuccessView({
   return (
     <div className="py-8 text-center">
       <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-500" />
-      <h2 className="mb-2 text-xl font-bold text-gray-900">Booking confirmed!</h2>
+      <h2 className="mb-2 text-xl font-bold text-gray-900">Marcação confirmada!</h2>
       <p className="mb-6 text-gray-600">
-        We&apos;ve sent a confirmation to {form.email}
+        Enviámos uma confirmação para {form.email}
       </p>
 
       <div className="mx-auto max-w-sm rounded-lg border border-gray-200 p-4 text-left text-sm">
@@ -411,13 +413,13 @@ function SuccessView({
           </div>
         </div>
         <div className="mb-3 border-b border-gray-100 pb-3">
-          <div className="text-gray-500">Date & Time</div>
+          <div className="text-gray-500">Data e Hora</div>
           <div className="font-medium text-gray-900">
-            {format(date, "EEEE, MMMM d, yyyy")} at {time}
+            {format(date, "EEEE, d 'de' MMMM 'de' yyyy", { locale: pt })} às {time}
           </div>
         </div>
         <div>
-          <div className="text-gray-500">Booked by</div>
+          <div className="text-gray-500">Marcado por</div>
           <div className="font-medium text-gray-900">{form.name}</div>
           <div className="text-gray-600">{form.email}</div>
           {form.phone && <div className="text-gray-600">{form.phone}</div>}
@@ -428,7 +430,7 @@ function SuccessView({
         onClick={onReset}
         className="mt-6 rounded-lg border border-gray-300 px-5 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
       >
-        Book another
+        Fazer outra marcação
       </button>
     </div>
   );
@@ -519,7 +521,7 @@ export function BookingFlow({ services, businessName }: BookingFlowProps) {
             className="flex items-center gap-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
           >
             <ChevronLeft className="h-4 w-4" />
-            Back
+            Voltar
           </button>
         ) : (
           <div />
@@ -531,7 +533,7 @@ export function BookingFlow({ services, businessName }: BookingFlowProps) {
             onClick={() => setStep(step + 1)}
             className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Continue
+            Continuar
           </button>
         ) : (
           <button
@@ -539,7 +541,7 @@ export function BookingFlow({ services, businessName }: BookingFlowProps) {
             onClick={handleSubmit}
             className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            Confirm Booking
+            Confirmar Marcação
           </button>
         )}
       </div>

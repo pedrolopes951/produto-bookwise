@@ -19,28 +19,28 @@ function Navbar() {
         </Link>
         <div className="hidden items-center gap-8 md:flex">
           <a
-            href="#features"
+            href="#funcionalidades"
             className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
           >
-            Features
+            Funcionalidades
           </a>
           <a
-            href="#pricing"
+            href="#precos"
             className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
           >
-            Pricing
+            Preços
           </a>
           <Link
             href="/signin"
             className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
           >
-            Sign In
+            Entrar
           </Link>
           <Link
             href="/signup"
             className="rounded-lg bg-[#2563eb] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#1d4ed8]"
           >
-            Get Started
+            Começar Grátis
           </Link>
         </div>
       </div>
@@ -57,40 +57,40 @@ export default function Home() {
       <section className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-5xl font-bold tracking-tight text-gray-900 md:text-6xl">
-            Your clients book.
+            Os seus clientes marcam.
             <br />
-            You grow.
+            O seu negócio cresce.
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600 md:text-xl">
-            Simple, beautiful appointment scheduling for small businesses.
-            <br className="hidden md:inline" /> Share your link, get booked.
-            Free to start.
+            Sistema de reservas online para negócios locais em Portugal.
+            <br className="hidden md:inline" /> Partilhe o link, receba marcações.
+            Grátis para começar.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/signup"
               className="rounded-lg bg-[#2563eb] px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#1d4ed8]"
             >
-              Get Started Free
+              Começar Grátis
             </Link>
             <a
-              href="#how-it-works"
+              href="#como-funciona"
               className="rounded-lg border border-gray-300 px-8 py-3.5 text-base font-semibold text-gray-700 transition-colors hover:bg-gray-50"
             >
-              See How It Works
+              Como Funciona
             </a>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section id="how-it-works" className="bg-gray-50 px-6 py-24">
+      {/* Como Funciona */}
+      <section id="como-funciona" className="bg-gray-50 px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
-            How It Works
+            Como Funciona
           </h2>
           <p className="mt-4 text-center text-lg text-gray-600">
-            Get up and running in three simple steps.
+            Comece a receber marcações em três passos simples.
           </p>
           <div className="mt-16 grid gap-12 md:grid-cols-3">
             <div className="flex flex-col items-center text-center">
@@ -98,13 +98,13 @@ export default function Home() {
                 <Store className="h-8 w-8 text-[#2563eb]" />
               </div>
               <span className="mt-4 text-sm font-semibold text-[#2563eb]">
-                Step 1
+                Passo 1
               </span>
               <h3 className="mt-2 text-xl font-semibold text-gray-900">
-                Create your page
+                Crie a sua página
               </h3>
               <p className="mt-2 text-gray-600">
-                Set up your services, prices, and availability in minutes.
+                Configure os seus serviços, preços e disponibilidade em minutos.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
@@ -112,14 +112,14 @@ export default function Home() {
                 <LinkIcon className="h-8 w-8 text-[#2563eb]" />
               </div>
               <span className="mt-4 text-sm font-semibold text-[#2563eb]">
-                Step 2
+                Passo 2
               </span>
               <h3 className="mt-2 text-xl font-semibold text-gray-900">
-                Share your link
+                Partilhe o link
               </h3>
               <p className="mt-2 text-gray-600">
-                Send your unique booking link to clients via text, email, or
-                social media.
+                Envie o seu link de marcações aos clientes por mensagem, email ou
+                redes sociais.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
@@ -127,27 +127,27 @@ export default function Home() {
                 <CalendarCheck className="h-8 w-8 text-[#2563eb]" />
               </div>
               <span className="mt-4 text-sm font-semibold text-[#2563eb]">
-                Step 3
+                Passo 3
               </span>
               <h3 className="mt-2 text-xl font-semibold text-gray-900">
-                Get booked
+                Receba marcações
               </h3>
               <p className="mt-2 text-gray-600">
-                Clients pick a time that works. You get notified instantly.
+                Os clientes escolhem o horário. Você é notificado de imediato.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section id="features" className="px-6 py-24">
+      {/* Funcionalidades */}
+      <section id="funcionalidades" className="px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
-            Everything you need to get booked
+            Tudo o que precisa para receber marcações
           </h2>
           <p className="mt-4 text-center text-lg text-gray-600">
-            Powerful features, simple interface.
+            Funcionalidades poderosas, interface simples.
           </p>
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
@@ -155,10 +155,10 @@ export default function Home() {
                 <Clock className="h-6 w-6 text-[#2563eb]" />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-gray-900">
-                24/7 Online Booking
+                Reservas Online 24/7
               </h3>
               <p className="mt-2 text-sm leading-6 text-gray-600">
-                Your clients book when it&apos;s convenient for them.
+                Os seus clientes marcam quando lhes for conveniente.
               </p>
             </div>
             <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
@@ -166,10 +166,10 @@ export default function Home() {
                 <Smartphone className="h-6 w-6 text-[#2563eb]" />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-gray-900">
-                Mobile Friendly
+                Compatível com Telemóvel
               </h3>
               <p className="mt-2 text-sm leading-6 text-gray-600">
-                Beautiful on every device, no app required.
+                Perfeito em qualquer dispositivo, sem necessidade de app.
               </p>
             </div>
             <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
@@ -177,10 +177,10 @@ export default function Home() {
                 <Bell className="h-6 w-6 text-[#2563eb]" />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-gray-900">
-                Instant Notifications
+                Notificações Instantâneas
               </h3>
               <p className="mt-2 text-sm leading-6 text-gray-600">
-                Email confirmations for you and your clients.
+                Confirmações por email para si e para os seus clientes.
               </p>
             </div>
             <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
@@ -188,110 +188,110 @@ export default function Home() {
                 <Zap className="h-6 w-6 text-[#2563eb]" />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-gray-900">
-                Set Up in 5 Minutes
+                Configuração em 5 Minutos
               </h3>
               <p className="mt-2 text-sm leading-6 text-gray-600">
-                No tech skills needed. If you can fill out a form, you can use
-                Bookwise.
+                Sem conhecimentos técnicos. Se sabe preencher um formulário, sabe
+                usar o Bookwise.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="bg-gray-50 px-6 py-24">
+      {/* Preços */}
+      <section id="precos" className="bg-gray-50 px-6 py-24">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
-            Simple, transparent pricing
+            Preços simples e transparentes
           </h2>
           <p className="mt-4 text-center text-lg text-gray-600">
-            Start free. Upgrade when you&apos;re ready.
+            Comece grátis. Faça upgrade quando quiser.
           </p>
           <div className="mt-16 grid gap-8 md:grid-cols-2">
-            {/* Free Plan */}
+            {/* Plano Grátis */}
             <div className="rounded-2xl border border-gray-200 bg-white p-8">
-              <h3 className="text-lg font-semibold text-gray-900">Free</h3>
+              <h3 className="text-lg font-semibold text-gray-900">Grátis</h3>
               <p className="mt-1 text-sm text-gray-600">
-                For getting started
+                Para começar
               </p>
               <p className="mt-6">
                 <span className="text-4xl font-bold tracking-tight text-gray-900">
-                  $0
+                  €0
                 </span>
-                <span className="text-sm text-gray-600">/month</span>
+                <span className="text-sm text-gray-600">/mês</span>
               </p>
               <Link
                 href="/signup"
                 className="mt-8 block w-full rounded-lg border border-[#2563eb] py-3 text-center text-sm font-semibold text-[#2563eb] transition-colors hover:bg-[#2563eb]/5"
               >
-                Start Free
+                Começar Grátis
               </Link>
               <ul className="mt-8 space-y-3">
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />1
-                  booking page
+                  página de marcações
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />1
-                  service
+                  serviço
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  50 bookings/mo
+                  50 marcações/mês
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  Email notifications
+                  Notificações por email
                 </li>
               </ul>
             </div>
 
-            {/* Pro Plan */}
+            {/* Plano Pro */}
             <div className="relative rounded-2xl border-2 border-[#2563eb] bg-white p-8">
               <span className="absolute -top-3 left-6 rounded-full bg-[#2563eb] px-3 py-0.5 text-xs font-semibold text-white">
                 Popular
               </span>
               <h3 className="text-lg font-semibold text-gray-900">Pro</h3>
               <p className="mt-1 text-sm text-gray-600">
-                For growing businesses
+                Para negócios em crescimento
               </p>
               <p className="mt-6">
                 <span className="text-4xl font-bold tracking-tight text-gray-900">
-                  $19
+                  €15
                 </span>
-                <span className="text-sm text-gray-600">/month</span>
+                <span className="text-sm text-gray-600">/mês</span>
               </p>
               <Link
                 href="/signup"
                 className="mt-8 block w-full rounded-lg bg-[#2563eb] py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#1d4ed8]"
               >
-                Start Free Trial
+                Experimentar Grátis
               </Link>
               <ul className="mt-8 space-y-3">
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  Unlimited booking pages
+                  Páginas de marcações ilimitadas
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  Unlimited services
+                  Serviços ilimitados
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  Unlimited bookings
+                  Marcações ilimitadas
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  SMS reminders
+                  Lembretes por SMS
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  Custom branding
+                  Marca personalizada
                 </li>
                 <li className="flex items-center gap-3 text-sm text-gray-600">
                   <Check className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  Priority support
+                  Suporte prioritário
                 </li>
               </ul>
             </div>
@@ -299,7 +299,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Rodapé */}
       <footer className="border-t border-gray-100 px-6 py-12">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-sm text-gray-500">
@@ -310,13 +310,13 @@ export default function Home() {
               href="/privacy"
               className="text-sm text-gray-500 transition-colors hover:text-gray-700"
             >
-              Privacy
+              Privacidade
             </a>
             <a
               href="/terms"
               className="text-sm text-gray-500 transition-colors hover:text-gray-700"
             >
-              Terms
+              Termos
             </a>
           </div>
         </div>
