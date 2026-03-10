@@ -16,11 +16,11 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { label: "Painel", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Marcações", href: "/dashboard/bookings", icon: Calendar },
-  { label: "Serviços", href: "/dashboard/services", icon: Briefcase },
-  { label: "Disponibilidade", href: "/dashboard/availability", icon: Clock },
-  { label: "Definições", href: "/dashboard/settings", icon: Settings },
+  { label: "Painel", href: "/painel", icon: LayoutDashboard },
+  { label: "Marcações", href: "/painel/bookings", icon: Calendar },
+  { label: "Serviços", href: "/painel/services", icon: Briefcase },
+  { label: "Disponibilidade", href: "/painel/availability", icon: Clock },
+  { label: "Definições", href: "/painel/settings", icon: Settings },
 ];
 
 const BOOKING_LINK = "bookwise.app/book/your-business";

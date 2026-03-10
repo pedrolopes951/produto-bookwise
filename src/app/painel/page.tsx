@@ -69,8 +69,8 @@ const statusStyles = {
 };
 
 const quickActions = [
-  { label: "Adicionar Serviço", icon: Plus, href: "/dashboard/services" },
-  { label: "Atualizar Disponibilidade", icon: Clock, href: "/dashboard/availability" },
+  { label: "Adicionar Serviço", icon: Plus, href: "/painel/services" },
+  { label: "Atualizar Disponibilidade", icon: Clock, href: "/painel/availability" },
   { label: "Partilhar Link de Marcações", icon: Share2, href: "#" },
 ];
 
