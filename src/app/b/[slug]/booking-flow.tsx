@@ -460,8 +460,23 @@ export function BookingFlow({ services, businessName }: BookingFlowProps) {
   const canSubmit = form.name.trim() !== "" && form.email.trim() !== "";
 
   function handleSubmit() {
-    if (!canSubmit) return;
-    // TODO: send booking to API
+    if (!canSubmit || !selectedService || !selectedDate || !selectedTime) return;
+
+    const dateStr = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`;
+    const newBooking = {
+      id: Date.now(),
+      client: form.name,
+      service: selectedService.name,
+      date: dateStr,
+      time: selectedTime,
+      status: "PENDING" as const,
+    };
+
+    try {
+      const existing = JSON.parse(localStorage.getItem("bookwise-bookings") || "[]");
+      localStorage.setItem("bookwise-bookings", JSON.stringify([...existing, newBooking]));
+    } catch {}
+
     setConfirmed(true);
   }
 
