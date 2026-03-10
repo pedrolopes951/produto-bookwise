@@ -23,7 +23,7 @@ const navItems = [
   { label: "Definições", href: "/painel/settings", icon: Settings },
 ];
 
-const BOOKING_LINK = "bookwise.app/book/your-business";
+const BOOKING_LINK = "produto-bookwise.vercel.app/b/salao-da-maria";
 
 export default function DashboardLayout({
   children,
